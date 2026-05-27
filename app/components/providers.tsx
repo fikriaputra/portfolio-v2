@@ -9,10 +9,10 @@ export function Providers({
 }) {
   return (
     <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem
-    >
+  attribute="class"
+  defaultTheme="light"
+  enableSystem={false}
+>
       {children}
     </ThemeProvider>
   );

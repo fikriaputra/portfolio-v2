@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 
 import logoWhite from "../assets/logoWhite.png";
+import logoDark from "../assets/logoDark.png";
 
 import {
   FaMoon,
@@ -16,21 +17,35 @@ import {
 
 const Navbar = () => {
 
-  const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
   const { theme, setTheme } = useTheme();
 
   return (
 
     <nav
-      className={`
-        fixed top-0 left-0 w-full z-50 overflow-visible
-        bg-white/70 backdrop-blur-lg border-b border-white/20
-        px-6 md:px-10 py-4
-        flex items-center justify-between
-        ${menuOpen ? "min-h-screen" : ""}
-      `}
-    >
+  className={`
+    fixed top-0 left-0 w-full z-50 overflow-visible
+
+    ${
+      theme === "dark"
+        ? "bg-black/95 border-gray-900"
+        : "bg-white/80 border-gray-200"
+    }
+
+    backdrop-blur-lg
+
+    border-b
+
+    px-6 md:px-10 py-4
+
+    flex items-center justify-between
+
+    transition-colors duration-200 ease-in-out
+
+    ${menuOpen ? "min-h-screen" : ""}
+  `}
+>
 
       {/* =========================
           Logo
@@ -40,7 +55,7 @@ const Navbar = () => {
         className={`${menuOpen ? "hidden" : "block"}`}
       >
         <Image
-          src={logoWhite}
+          src={theme === "dark" ? logoDark : logoWhite}
           alt="Logo"
           className="w-20 md:w-28 cursor-pointer"
         />
@@ -50,24 +65,41 @@ const Navbar = () => {
           Desktop Menu
       ========================== */}
       <ul
-        className="
+        className={`
           hidden md:flex gap-2
-          bg-white/80 backdrop-blur-md
-          border border-gray-200
+
+          ${
+            theme === "dark"
+              ? "bg-black text-white border-gray-700"
+              : "bg-white/80 text-black border-gray-200"
+          }
+
+          backdrop-blur-md
+
+          border
+
           rounded-full
           px-6 py-3
+
           shadow-md
-        "
+
+          transition-colors duration-200
+        `}
       >
 
         <li>
           <a
             href="#home"
-            className="
+            className={`
               px-4 py-2 rounded-full
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             Home
           </a>
@@ -76,11 +108,16 @@ const Navbar = () => {
         <li>
           <a
             href="#about"
-            className="
+            className={`
               px-4 py-2 rounded-full
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             About Me
           </a>
@@ -89,11 +126,16 @@ const Navbar = () => {
         <li>
           <a
             href="#services"
-            className="
+            className={`
               px-4 py-2 rounded-full
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             Services
           </a>
@@ -102,11 +144,16 @@ const Navbar = () => {
         <li>
           <a
             href="#work"
-            className="
+            className={`
               px-4 py-2 rounded-full
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             My Work
           </a>
@@ -115,11 +162,16 @@ const Navbar = () => {
         <li>
           <a
             href="#contact"
-            className="
+            className={`
               px-4 py-2 rounded-full
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             Contact Me
           </a>
@@ -132,35 +184,55 @@ const Navbar = () => {
       ========================== */}
       <div className="hidden md:flex items-center gap-4">
 
-        {/* Dark Mode Toggle */}
+        {/* Toggle */}
         <button
           onClick={() =>
-  setTheme(theme === "dark" ? "light" : "dark")}
-          className="
+            setTheme(theme === "dark" ? "light" : "dark")
+          }
+          className={`
             w-12 h-12
             flex items-center justify-center
+
             rounded-full
-            border border-gray-300
-            hover:bg-gray-100
+
+            border
+
             transition-all duration-300
-          "
+
+            ${
+              theme === "dark"
+                ? "bg-black text-white border-gray-700 hover:bg-white hover:text-black"
+                : "bg-white text-black border-gray-300 hover:bg-black hover:text-white"
+            }
+          `}
         >
           {
             theme === "dark"
-  ? <FaSun />
-  : <FaMoon />
+              ? <FaSun />
+              : <FaMoon />
           }
         </button>
 
         {/* Contact Button */}
         <a
           href="#contact"
-          className="
+          className={`
             flex items-center gap-2
-            border px-5 py-3 rounded-full
-            hover:bg-black hover:text-white
-            transition-all duration-300
-          "
+
+            px-5 py-3
+
+            rounded-full
+
+            border
+
+            transition-colors duration-200
+
+            ${
+              theme === "dark"
+                ? "bg-black text-white border-gray-700 hover:bg-white hover:text-black"
+                : "bg-white text-black border-gray-300 hover:bg-black hover:text-white"
+            }
+          `}
         >
           Contact
           <FaArrowRight className="text-sm" />
@@ -181,26 +253,43 @@ const Navbar = () => {
         {/* Toggle */}
         <button
           onClick={() =>
-  setTheme(theme === "dark" ? "light" : "dark")}
-          className="
+            setTheme(theme === "dark" ? "light" : "dark")
+          }
+          className={`
             w-10 h-10
             flex items-center justify-center
+
             rounded-full
-            border border-gray-300
-            hover:bg-gray-100
-            transition-all duration-300
-          "
+
+            border
+
+            transition-colors duration-200
+
+            ${
+              theme === "dark"
+                ? "bg-black text-white border-gray-700 hover:bg-white hover:text-black"
+                : "bg-white text-black border-gray-300 hover:bg-black hover:text-white"
+            }
+          `}
         >
           {
             theme === "dark"
-  ? <FaSun />
-  : <FaMoon />
+              ? <FaSun />
+              : <FaMoon />
           }
         </button>
 
         {/* Hamburger */}
         <button
-          className="text-2xl"
+          className={`
+            text-2xl
+
+            ${
+              theme === "dark"
+                ? "text-white"
+                : "text-black"
+            }
+          `}
           onClick={() => setMenuOpen(true)}
         >
           <FaBars />
@@ -232,11 +321,23 @@ const Navbar = () => {
       <div
         className={`
           fixed top-0 right-0
+
           h-screen w-[75%]
-          bg-white shadow-2xl
+
+          ${
+            theme === "dark"
+              ? "bg-[#111111] text-white"
+              : "bg-white text-black"
+          }
+
+          shadow-2xl
+
           z-[70]
+
           transform transition-transform duration-500 ease-in-out
+
           md:hidden
+
           ${menuOpen ? "translate-x-0" : "translate-x-full"}
         `}
       >
@@ -258,60 +359,80 @@ const Navbar = () => {
 
           <a
             href="#home"
-            className="
+            className={`
               w-full text-center py-4 rounded-xl
-              active:bg-black active:text-white
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             Home
           </a>
 
           <a
             href="#about"
-            className="
+            className={`
               w-full text-center py-4 rounded-xl
-              active:bg-black active:text-white
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             About Me
           </a>
 
           <a
             href="#services"
-            className="
+            className={`
               w-full text-center py-4 rounded-xl
-              active:bg-black active:text-white
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             Services
           </a>
 
           <a
             href="#work"
-            className="
+            className={`
               w-full text-center py-4 rounded-xl
-              active:bg-black active:text-white
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             My Work
           </a>
 
           <a
             href="#contact"
-            className="
+            className={`
               w-full text-center py-4 rounded-xl
-              active:bg-black active:text-white
-              hover:bg-black hover:text-white
-              transition-all duration-300
-            "
+              transition-colors duration-200
+
+              ${
+                theme === "dark"
+                  ? "hover:bg-white hover:text-black"
+                  : "hover:bg-black hover:text-white"
+              }
+            `}
           >
             Contact Me
           </a>
