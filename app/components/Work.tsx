@@ -8,7 +8,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 
-import project1 from "../assets/logoDark.png";
+import project1 from "../assets/FishPond.png";
 import project2 from "../assets/logoDark.png";
 import project3 from "../assets/logoDark.png";
 import project4 from "../assets/logoDark.png";
@@ -23,45 +23,91 @@ const Work = () => {
 
   const projects = [
     {
+      title: "Fish Prediction ML Models",
+      category: "Machine Learning",
       image: project1,
-      title: "Frontend Project",
-      category: "Web design",
+      github:
+        "https://github.com/fikriaputra/Fish-Prediction-ML-Models",
+
+      certificate:
+        "https://drive.google.com/file/d/1FzbxIdr2nuHS9qxRW6CYANlByWVXc3D2/view?usp=sharing",
+
+      tech: [
+        "Python",
+        "XGBoost",
+        "Random Forest",
+      ],
     },
 
     {
       image: project2,
       title: "Geo Based App",
-      category: "Mobile app",
+      category: "Mobile App",
+      github: "#",
+
+      tech: [
+        "Flutter",
+        "Firebase",
+        "Google Maps",
+      ],
     },
 
     {
       image: project3,
       title: "Photography Site",
-      category: "Web design",
+      category: "Web Design",
+      github: "#",
+
+      tech: [
+        "React",
+        "Tailwind",
+        "Next.js",
+      ],
     },
 
     {
       image: project4,
       title: "UI/UX Designing",
-      category: "UI/UX design",
+      category: "UI/UX Design",
+      github: "#",
+
+      tech: [
+        "Figma",
+        "Adobe XD",
+        "Prototype",
+      ],
     },
 
     {
       image: project5,
       title: "Dashboard App",
-      category: "Web application",
+      category: "Web Application",
+      github: "#",
+
+      tech: [
+        "React",
+        "Chart.js",
+        "API",
+      ],
     },
 
     {
       image: project6,
       title: "E-Commerce App",
-      category: "Fullstack project",
+      category: "Fullstack Project",
+      github: "#",
+
+      tech: [
+        "Next.js",
+        "MongoDB",
+        "Stripe",
+      ],
     },
   ];
 
   const visibleProjects = showAll
     ? projects
-    : projects.slice(0, 4);
+    : projects.slice(0, 3);
 
   return (
 
@@ -127,9 +173,8 @@ const Work = () => {
             }
           `}
         >
-          Welcome to my web development portfolio!
-          Explore a collection of projects showcasing
-          my expertise in front-end development.
+          Explore my collection of modern web projects focused on responsive design, 
+          clean UI/UX, and user-friendly experiences.
         </p>
 
       </motion.div>
@@ -137,14 +182,15 @@ const Work = () => {
       {/* =========================
           Projects
       ========================== */}
-      <div className="
-        grid
-        grid-cols-1
-        sm:grid-cols-2
-        lg:grid-cols-3
-        xl:grid-cols-4
-        gap-6
-      ">
+      <div
+        className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-3
+          gap-6
+        "
+      >
 
         {visibleProjects.map((project, index) => (
 
@@ -167,16 +213,18 @@ const Work = () => {
             viewport={{ once: true }}
             whileHover={{ y: -8 }}
             className="
-  relative
-  rounded-2xl
+              relative
+              overflow-hidden
+              rounded-3xl
 
-  border-2 border-white/30
+              border-2 border-white/30
+              group
 
-  overflow-hidden
+              shadow-lg
+              hover:shadow-2xl
 
-  group
-  cursor-pointer
-"
+              transition-all duration-500
+            "
           >
 
             {/* Image */}
@@ -185,7 +233,8 @@ const Work = () => {
               alt={project.title}
               className="
                 w-full
-                h-60 sm:h-72
+                h-72 sm:h-80
+
                 object-cover
 
                 group-hover:scale-105
@@ -203,20 +252,19 @@ const Work = () => {
                 delay: index * 0.1,
               }}
               viewport={{ once: true }}
-              whileHover={{ y: -3 }}
               className={`
                 absolute
                 bottom-3 left-3 right-3
 
-                rounded-xl
+                rounded-2xl
 
-                px-4 py-3
+                px-3 py-2
 
-                flex items-center justify-between
-
-                shadow-lg
+                flex items-center justify-between gap-3
 
                 border
+
+                shadow-xl
 
                 transition-all duration-300
 
@@ -228,12 +276,15 @@ const Work = () => {
               `}
             >
 
-              <div>
+              {/* Left Content */}
+              <div className="flex-1 min-w-0">
 
+                {/* Title */}
                 <h3
                   className={`
-                    font-semibold
                     text-sm
+                    font-semibold
+                    truncate
 
                     ${
                       theme === "dark"
@@ -245,9 +296,10 @@ const Work = () => {
                   {project.title}
                 </h3>
 
+                {/* Category */}
                 <p
                   className={`
-                    text-xs
+                    text-xs mt-[2px]
 
                     ${
                       theme === "dark"
@@ -259,27 +311,101 @@ const Work = () => {
                   {project.category}
                 </p>
 
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-1 mt-2">
+
+                  {project.tech?.map((item, i) => (
+
+                    <span
+                      key={i}
+                      className={`
+                        text-[9px]
+
+                        px-1.5 py-[1px]
+
+                        rounded-full
+
+                        whitespace-nowrap
+
+                        ${
+                          theme === "dark"
+                            ? "bg-lime-300/10 text-lime-300"
+                            : "bg-green-200 text-green-700"
+                        }
+                      `}
+                    >
+                      {item}
+                    </span>
+
+                  ))}
+
+                </div>
+
               </div>
+              
+              
+              {/* Action Buttons */}
+<div className="flex items-center gap-2">
 
-              {/* Arrow Button */}
-              <button
-                className="
-                  w-10 h-10
-                  shrink-0
+  {/* Certificate Button */}
+  {project.certificate && (
+    <a
+      href={project.certificate}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        px-3 py-2
 
-                  rounded-full
+        rounded-full
 
-                  bg-lime-300
+        text-[10px]
+        font-medium
 
-                  flex items-center justify-center
+        whitespace-nowrap
 
-                  hover:rotate-45
+        bg-lime-300
+        text-black
 
-                  transition-all duration-300
-                "
-              >
-                <FaArrowRight className="text-black text-sm" />
-              </button>
+        hover:scale-105
+
+        shadow-lg shadow-lime-300/30
+
+        transition-all duration-300
+      "
+    >
+      Certificate
+    </a>
+  )}
+
+  {/* Arrow Button */}
+  {project.github && (
+    <a
+      href={project.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        w-10 h-10
+        shrink-0
+
+        rounded-full
+
+        bg-lime-300
+
+        flex items-center justify-center
+
+        hover:rotate-45
+        hover:scale-110
+
+        shadow-lg shadow-lime-300/30
+
+        transition-all duration-300
+      "
+    >
+      <FaArrowRight className="text-black text-sm" />
+    </a>
+  )}
+
+</div>
 
             </motion.div>
 
@@ -299,7 +425,7 @@ const Work = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="flex justify-center mt-12"
+          className="flex justify-center mt-14"
         >
 
           <button
@@ -314,6 +440,8 @@ const Work = () => {
               border
 
               transition-all duration-300
+
+              hover:scale-105
 
               ${
                 theme === "dark"

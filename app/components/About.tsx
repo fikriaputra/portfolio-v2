@@ -122,7 +122,7 @@ const About = () => {
               }
             `}
           >
-            A final-year Information Technology student at{" "}
+            An Information Technology graduate from{" "}
             <b>Telkom University</b> with a passion for web and mobile
             application development. Experienced in building end-to-end
             web applications, from responsive and user-friendly interfaces
@@ -302,7 +302,7 @@ const About = () => {
                   }
                 `}
               >
-                Built multiple frontend and fullstack projects
+                Developed multiple responsive web and mobile applications using modern technologies.
               </p>
             </motion.div>
 

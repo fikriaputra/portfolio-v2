@@ -103,8 +103,8 @@ const Services = () => {
           `}
         >
           I am a web developer from Bandung, Indonesia
-          with 2 years of experience in multiple
-          companies like Microsoft, Tesla and Apple.
+          with 2 years of experience in 
+          building modern and responsive web applications.
         </p>
 
       </motion.div>

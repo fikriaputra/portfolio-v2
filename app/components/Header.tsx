@@ -103,8 +103,8 @@ const Header = () => {
           }
         `}
       >
-        Web developer <br />
-        based in Indonesia.
+        Web Developer & <br />
+        IT Enthusiast
       </motion.h1>
 
       {/* =========================
@@ -129,9 +129,8 @@ const Header = () => {
           }
         `}
       >
-        I am a web developer passionate about building modern,
-        responsive, and user-friendly websites using React,
-        Next.js, Tailwind CSS, and modern web technologies.
+        Passionate web developer focused on building modern, 
+        responsive, and user-friendly web applications with clean UI/UX experiences.
       </motion.p>
 
       {/* =========================
