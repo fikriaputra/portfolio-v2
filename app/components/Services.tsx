@@ -85,7 +85,7 @@ const Services = () => {
         </h4>
 
         <h2 className="text-3xl sm:text-4xl md:text-6xl font-Ovo mb-6">
-          My services
+          My skills
         </h2>
 
         <p

@@ -137,7 +137,7 @@ const Navbar = () => {
               }
             `}
           >
-            Services
+            Skills
           </a>
         </li>
 
@@ -155,7 +155,7 @@ const Navbar = () => {
               }
             `}
           >
-            My Work
+            My Projects
           </a>
         </li>
 
@@ -418,7 +418,7 @@ const Navbar = () => {
               }
             `}
           >
-            My Work
+            My Projects
           </a>
 
           <a

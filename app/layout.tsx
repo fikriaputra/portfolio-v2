@@ -17,7 +17,10 @@ const ovo = Ovo({
 
 export const metadata: Metadata = {
   title: "Portfolio - Fikri Adyatma Putra",
-  description: "",
+  description: "Frontend Developer Portfolio",
+  icons: {
+    icon: "/logoDark.png",
+  },
 };
 
 export default function RootLayout({

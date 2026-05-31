@@ -11,7 +11,7 @@ import {
 
 import { motion } from "framer-motion";
 
-import profileImg from "../assets/IMG_1432025.jpg";
+import profileImg from "../assets/Foto_Formal_no_pocket.png";
 
 const Header = () => {
 

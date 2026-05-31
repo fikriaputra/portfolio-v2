@@ -9,10 +9,10 @@ import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 import project1 from "../assets/FishPond.png";
-import project2 from "../assets/logoDark.png";
-import project3 from "../assets/logoDark.png";
-import project4 from "../assets/logoDark.png";
-import project5 from "../assets/logoDark.png";
+import project2 from "../assets/Web_SmartComp.png";
+import project3 from "../assets/Mobile_SmartComp.png";
+import project4 from "../assets/sanditel.png";
+import project5 from "../assets/Mobile_JKN.png";
 import project6 from "../assets/logoDark.png";
 
 const Work = () => {
@@ -23,9 +23,9 @@ const Work = () => {
 
   const projects = [
     {
+      image: project1,
       title: "Fish Prediction ML Models",
       category: "Machine Learning",
-      image: project1,
       github:
         "https://github.com/fikriaputra/Fish-Prediction-ML-Models",
 
@@ -41,68 +41,65 @@ const Work = () => {
 
     {
       image: project2,
-      title: "Geo Based App",
-      category: "Mobile App",
-      github: "#",
+      title: "Website Smart Competition",
+      category: "Web Application",
+      github: "https://github.com/fikriaputra/Web-SmartComp",
 
       tech: [
-        "Flutter",
-        "Firebase",
-        "Google Maps",
+        "Laravel",
+        "PHP",
+        "MySQL",
+        "Tailwind",
+        "JavaScript",
       ],
     },
 
     {
       image: project3,
-      title: "Photography Site",
-      category: "Web Design",
-      github: "#",
+      title: "Smart Competition App",
+      category: "Mobile App",
+      github: "https://github.com/fikriaputra/Smart-Comp-Mobile",
 
       tech: [
-        "React",
-        "Tailwind",
-        "Next.js",
+        "Flutter",
+        "Firebase",
+        "Dart",
+        "Rest API",
       ],
     },
 
     {
       image: project4,
-      title: "UI/UX Designing",
-      category: "UI/UX Design",
-      github: "#",
+      title: "Sanditel Apps",
+      category: "Web Application",
+      github: "https://fe-sanditel-hz9r.vercel.app/",
 
       tech: [
-        "Figma",
-        "Adobe XD",
-        "Prototype",
+        "React.js",
+        "Vite",
+        "Tailwind CSS",
+        "JavaScript",
+        "REST API",
+        "Responsive Design",
       ],
     },
 
     {
       image: project5,
-      title: "Dashboard App",
-      category: "Web Application",
-      github: "#",
+      title: "Mobile JKN Redesign",
+      category: "UI/UX Design",
+      github: "https://www.figma.com/design/PgDdwIwW48hltkHvBjrtq1/UX-MENYALA?node-id=0-1&t=pq63uVId6Wf8nFih-1",
 
       tech: [
-        "React",
-        "Chart.js",
-        "API",
+        "Figma",
+        "UI Design",
+        "UX Research",
+        "Wireframing",
+        "Prototyping",
+        "Design System",
       ],
     },
 
-    {
-      image: project6,
-      title: "E-Commerce App",
-      category: "Fullstack Project",
-      github: "#",
-
-      tech: [
-        "Next.js",
-        "MongoDB",
-        "Stripe",
-      ],
-    },
   ];
 
   const visibleProjects = showAll
@@ -156,7 +153,7 @@ const Work = () => {
         </h4>
 
         <h2 className="text-3xl sm:text-4xl md:text-6xl font-Ovo mb-6">
-          My latest work
+          My latest projects
         </h2>
 
         <p
