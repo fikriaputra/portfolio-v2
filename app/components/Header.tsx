@@ -175,7 +175,7 @@ const Header = () => {
 
         {/* Download CV */}
         <a
-          href="/Fikri Adyatma Putra_Resume.pdf"
+          href="/Fikri Adyatma Putra_resume.pdf"
           download
           className={`
             flex items-center gap-2
