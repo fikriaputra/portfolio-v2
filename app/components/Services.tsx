@@ -1,203 +1,384 @@
 "use client";
 
-import React from "react";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
-
 import {
   FaCode,
-  FaMobileAlt,
-  FaPalette,
+  FaFlask,
+  FaUsers,
+  FaNetworkWired,
 } from "react-icons/fa";
 
-import { motion } from "framer-motion";
+const services = [
+  {
+    icon: <FaCode />,
+    period: "Jul 2025 - Sep 2025",
+    duration: 3,
+    role: {
+      id: "Magang Frontend Developer",
+      en: "Frontend Developer Intern",
+    },
+    company: {
+      id: "Sekretariat Daerah Provinsi Jawa Barat",
+      en: "Regional Secretariat of West Java Province",
+    },
+    category: "frontend",
+    description: {
+      id: "Mengembangkan antarmuka web responsif untuk sistem inventaris dan pelaporan menggunakan React.js dan Tailwind CSS, membangun komponen UI yang dapat digunakan kembali, dan mengintegrasikan API RESTful untuk menghadirkan fitur yang skalabel dan andal di berbagai perangkat melalui kolaborasi lintas fungsi.",
+      en: "Developed responsive web interfaces for an inventory and reporting system using React.js and Tailwind CSS, built reusable UI components, and integrated RESTful APIs to deliver scalable and reliable features across devices through cross-functional collaboration.",
+    },
+  },
 
-const Services = () => {
+  {
+    icon: <FaFlask />,
+    period: "Jun 2025 - Dec 2025",
+    duration: 7,
+    role: {
+      id: "Penulis Pertama & Pembicara",
+      en: "First Author & Presenter",
+    },
+    company: {
+      id: "Publikasi Ilmiah ICICyTA 2025",
+      en: "ICICyTA 2025 Scientific Publication",
+    },
+    category: "research",
+    description: {
+      id: "Mempublikasikan dan mempresentasikan makalah penelitian sebagai penulis utama tentang ADASYN-XGBoost untuk menangani dataset rekomendasi ikan yang tidak seimbang, menerapkan pendekatan pembelajaran mesin hibrida untuk meningkatkan akurasi rekomendasi dan mengoptimalkan kinerja prediksi menggunakan data kualitas air berbasis IoT untuk dukungan pengambilan keputusan akuakultur cerdas.",
+      en: "Published and presented a first-authored research paper on ADASYN-XGBoost for handling imbalanced fish recommendation datasets, applying a hybrid machine learning approach to improve recommendation accuracy and optimize prediction performance using IoT-based water quality data for smart aquaculture decision support.",
+    },
+  },
+
+  {
+    icon: <FaNetworkWired />,
+    period: "Apr 2025 - Jul 2025",
+    duration: 4,
+    role: {
+      id: "Magang Administrator Jaringan",
+      en: "Network Administrator Intern",
+    },
+    company: {
+      id: "PT PLN (Persero) UP2D Jawa Barat",
+      en: "PT PLN (Persero) UP2D West Java",
+    },
+    category: "networking",
+    description: {
+      id: "Memelihara dan mengoptimalkan infrastruktur jaringan, memantau kinerja jaringan, dan mengelola konfigurasi perangkat jaringan untuk memastikan ketersediaan tinggi, keandalan, dan operasi yang aman sambil meminimalkan waktu henti.",
+      en: "Maintained and optimized network infrastructure, monitored network performance, and managed network device configurations to ensure high availability, reliability, and secure operations while minimizing downtime.",
+    },
+  },
+
+  {
+    icon: <FaUsers />,
+    period: "Nov 2023 - Dec 2023",
+    duration: 1,
+    role: {
+      id: "Perwakilan Mahasiswa",
+      en: "Student Representative",
+    },
+    company: {
+      id: "Microsoft",
+      en: "Microsoft",
+    },
+    category: "leadership",
+    description: {
+      id: "Mewakili Microsoft dalam berbagai workshop dan program edukasi kampus. Mengembangkan dashboard Power BI untuk analisis data serta mengeksplorasi layanan Microsoft Azure yang mencakup cloud computing, AI/ML, database, dan IoT.",
+      en: "Represented Microsoft through campus workshops and educational initiatives. Developed Power BI dashboards and explored Microsoft Azure services including cloud computing, AI/ML, databases, and IoT.",
+    },
+  },
+];
+
+interface ServicesProps {
+  language: "id" | "en";
+}
+
+const Services = ({
+  language,
+}: ServicesProps) => {
 
   const { theme } = useTheme();
 
-  const services = [
-    {
-      icon: <FaCode className="text-white text-lg" />,
-      title: "Web design",
-      description:
-        "Creating responsive and modern websites with clean layouts, smooth user experience, and attractive visual designs.",
-    },
+  const content = {
+  id: {
+    heading: "Pengalaman Saya",
+    title: "Pengalaman & Perjalanan",
+    description:
+      "Pengalaman profesional, magang, penelitian, dan program kepemimpinan yang berkontribusi pada perkembangan kemampuan teknis serta kolaborasi saya.",
 
-    {
-      icon: <FaMobileAlt className="text-white text-lg" />,
-      title: "Mobile app",
-      description:
-        "Developing user-friendly mobile applications with responsive interfaces, optimized performance, and seamless functionality.",
-    },
+    frontend: "Frontend",
+    research: "Penelitian",
+    leadership: "Kepemimpinan",
+    networking: "Jaringan",
 
-    {
-      icon: <FaPalette className="text-white text-lg" />,
-      title: "UI / UX design",
-      description:
-        "Designing intuitive and engaging user interfaces focused on improving usability, accessibility, and overall user experience.",
-    },
-  ];
+    months: "Bulan",
+  },
+
+  en: {
+    heading: "My Experience",
+    title: "Experience & Journey",
+    description:
+      "Professional experiences, internships, research activities, and leadership programs that contributed to my technical and collaborative growth.",
+
+    frontend: "Frontend",
+    research: "Research",
+    leadership: "Leadership",
+    networking: "Networking",
+
+    months: "Months",
+  },
+};
+
+const t = content[language];
 
   return (
-
     <section
-      id="services"
-      className={`
-        w-full
-        px-6 md:px-12 lg:px-24
-        py-24
-        scroll-mt-20
+  id="services"
+  className={`
+    py-24 px-6 md:px-10 lg:px-20
 
-        transition-all duration-300
+    transition-all duration-300
 
-        ${
-          theme === "dark"
-            ? "bg-black text-white"
-            : "bg-white text-black"
-        }
-      `}
-    >
-
-      {/* =========================
-          Heading
-      ========================== */}
+    ${
+      theme === "dark"
+        ? "bg-black text-white"
+        : "bg-white text-black"
+    }
+  `}
+>
+      {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        transition={{ duration: 0.5 }}
+        className="text-center mb-20"
       >
-
-        <h4
+        <p
           className={`
-            text-lg md:text-xl
-            font-Ovo mb-2
-
+            text-lg font-Ovo mb-3
             ${
               theme === "dark"
-                ? "text-gray-300"
+                ? "text-gray-400"
                 : "text-gray-600"
             }
           `}
         >
-          What i offers
-        </h4>
+          {t.heading}
+        </p>
 
-        <h2 className="text-3xl sm:text-4xl md:text-6xl font-Ovo mb-6">
-          My skills
+        <h2 className="text-4xl md:text-6xl font-Ovo mb-6">
+          {t.title}
         </h2>
 
         <p
           className={`
-            max-w-2xl mx-auto
-            text-sm md:text-base
-            leading-7
-            font-Ovo
-
+            max-w-3xl mx-auto leading-8
             ${
               theme === "dark"
-                ? "text-gray-300"
+                ? "text-gray-400"
                 : "text-gray-600"
             }
           `}
         >
-          I am a web developer from Bandung, Indonesia
-          with 2 years of experience in 
-          building modern and responsive web applications.
+          {t.description}
         </p>
-
       </motion.div>
 
-      {/* =========================
-          Cards
-      ========================== */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Timeline */}
+      <div className="max-w-5xl mx-auto relative">
 
-        {services.map((service, index) => (
+        {/* Vertical Line Desktop */}
+        <div
+  className={`
+    hidden lg:block
+    absolute
+    left-[240px]
+    top-0
+    bottom-0
+    w-px
 
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{
-              duration: 0.5,
-              delay: index * 0.1,
-            }}
-            viewport={{ once: true }}
-            whileHover={{ y: -8 }}
-            className={`
-              rounded-2xl
-              p-6 md:p-8
-              cursor-pointer
+    transition-all duration-300
 
-              border
+    ${
+      theme === "dark"
+        ? "bg-gray-700"
+        : "bg-gray-300"
+    }
+  `}
+/>
 
-              transition-all duration-300
-
-              hover:-translate-y-1
-              hover:shadow-xl
-
-              ${
-                theme === "dark"
-                  ? "bg-[#111111] border-gray-700 hover:bg-black"
-                  : "bg-white border-gray-400 hover:bg-gray-50"
-              }
-            `}
-          >
-
-            {/* Icon */}
-            <div className="
-              w-12 h-12
-              rounded-xl
-              bg-blue-500
-              flex items-center justify-center
-              mb-6
-            ">
-              {service.icon}
-            </div>
-
-            {/* Title */}
-            <h3
-              className={`
-                text-xl
-                font-semibold
-                mb-4
-
-                ${
-                  theme === "dark"
-                    ? "text-white"
-                    : "text-gray-800"
-                }
-              `}
+        <div className="space-y-12">
+          {services.map((exp, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="
+                grid
+                grid-cols-1
+                lg:grid-cols-[220px_80px_1fr]
+                gap-6
+                items-start
+              "
             >
-              {service.title}
-            </h3>
+              {/* Date */}
+              <div className="hidden lg:block text-right pt-2">
+                <h3 className="font-semibold text-lg">
+                  {exp.period}
+                </h3>
 
-            {/* Description */}
-            <p
-              className={`
-                text-sm
-                leading-6
+                <p
+                  className={`
+                    mt-1
+                    ${
+                      theme === "dark"
+                        ? "text-gray-400"
+                        : "text-gray-500"
+                    }
+                  `}
+                >
+                  {exp.duration} {t.months}
+                </p>
+              </div>
 
-                ${
-                  theme === "dark"
-                    ? "text-gray-300"
-                    : "text-gray-600"
-                }
-              `}
-            >
-              {service.description}
-            </p>
+              {/* Timeline Icon */}
+              <div
+                className="
+                  hidden lg:flex
+                  justify-center
+                  relative
+                "
+              >
+                <div
+                  className={`
+                  w-14 h-14
+                  rounded-full
+                  border
+                  flex items-center justify-center
+                  text-lg
+                  shadow-md
+                  z-10
 
-          </motion.div>
+                  transition-all duration-300 ease-in-out
 
-        ))}
+                  ${
+                    theme === "dark"
+                      ? "bg-[#111111] border-gray-700"
+                      : "bg-white border-gray-300"
+                  }
+                `}
+                >
+                  {exp.icon}
+                </div>
+              </div>
 
+              {/* Card */}
+              <div
+                className={`
+                  border
+                  rounded-[28px]
+                  p-6 md:p-7
+                  transition-all duration-300 ease-in-out
+                  hover:-translate-y-1
+                  hover:shadow-lg
+                  ${
+                    theme === "dark"
+                      ? "bg-[#111111] border-gray-700"
+                      : "bg-white border-gray-200"
+                  }
+                `}
+              >
+                {/* Mobile Date */}
+                <div className="lg:hidden mb-4">
+                  <p
+                    className={`
+                      text-sm font-medium
+                      ${
+                        theme === "dark"
+                          ? "text-gray-400"
+                          : "text-gray-500"
+                      }
+                    `}
+                  >
+                    {exp.period}
+                  </p>
+
+                  <p
+                    className={`
+                      text-sm
+                      ${
+                        theme === "dark"
+                          ? "text-gray-500"
+                          : "text-gray-400"
+                      }
+                    `}
+                  >
+                    {exp.duration}
+                  </p>
+                </div>
+
+                <div className="flex justify-between items-start gap-4 flex-wrap">
+                  <div>
+                    <h3 className="text-xl lg:text-2xl font-semibold">
+                      {exp.role[language]}
+                    </h3>
+
+                    <p
+                      className={`
+                        mt-2
+                        ${
+                          theme === "dark"
+                            ? "text-gray-400"
+                            : "text-gray-600"
+                        }
+                      `}
+                    >
+                      {exp.company[language]}
+                    </p>
+                  </div>
+
+                  <span
+                    className="
+                      px-4 py-2
+                      rounded-full
+                      text-sm
+                      font-medium
+                      bg-blue-50
+                      text-blue-600
+                    "
+                  >
+                    {
+  exp.category === "frontend"
+    ? t.frontend
+    : exp.category === "research"
+    ? t.research
+    : exp.category === "leadership"
+    ? t.leadership
+    : t.networking
+}
+                  </span>
+                </div>
+
+                <p
+                  className={`
+                    mt-5
+                    leading-8
+                    ${
+                      theme === "dark"
+                        ? "text-gray-300"
+                        : "text-gray-600"
+                    }
+                  `}
+                >
+                  {exp.description[language]}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-
     </section>
-
   );
 };
 

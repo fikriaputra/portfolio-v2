@@ -22,9 +22,57 @@ import { motion } from "framer-motion";
 
 import profileImg from "../assets/Foto_Formal_no_pocket.png";
 
-const About = () => {
+interface AboutProps {
+  language: "id" | "en";
+}
+
+const About = ({ language }: AboutProps) => {
 
   const { theme } = useTheme();
+
+  const content = {
+  id: {
+    intro: "Perkenalan",
+    title: "Tentang Saya",
+
+    description:
+      "Lulusan Teknologi Informasi dari Telkom University dengan minat pada pengembangan aplikasi web dan mobile serta dukungan teknologi informasi. Berpengalaman membangun aplikasi dari sisi frontend hingga backend menggunakan teknologi modern, termasuk integrasi API dan perancangan antarmuka yang responsif. Memiliki pemahaman tentang administrasi jaringan, troubleshooting sistem, dan dukungan teknis melalui pengalaman magang, serta mampu berkolaborasi secara efektif dalam tim untuk menghasilkan solusi yang andal dan berorientasi pada pengguna.",
+
+    languagesTitle: "Keahlian",
+    educationTitle: "Pendidikan",
+    projectsTitle: "Proyek",
+
+    educationDesc:
+      "Sarjana Teknologi Informasi - Telkom University",
+
+    projectsDesc:
+      "Mengembangkan berbagai aplikasi web dan mobile responsif menggunakan teknologi modern.",
+
+    tools: "Tools yang Saya Gunakan",
+  },
+
+  en: {
+    intro: "Introduction",
+    title: "About Me",
+
+    description:
+      "An Information Technology graduate from Telkom University with a passion for web and mobile application development and IT support. Experienced in building applications from frontend to backend using modern technologies, including API integration and designing responsive interfaces. Demonstrated understanding of network administration, troubleshooting systems, and technical support through internship experience, and the ability to collaborate effectively in real-time to produce reliable and user-oriented solutions.",
+
+    languagesTitle: "Skills",
+    educationTitle: "Education",
+    projectsTitle: "Projects",
+
+    educationDesc:
+      "Bachelor Degree in Information Technology - Telkom University",
+
+    projectsDesc:
+      "Developed multiple responsive web and mobile applications using modern technologies.",
+
+    tools: "Tools I Use",
+  },
+};
+
+const t = content[language];
 
   return (
     <section
@@ -67,11 +115,11 @@ const About = () => {
             }
           `}
         >
-          Introduction
+          {t.intro}
         </h4>
 
         <h2 className="text-3xl sm:text-4xl md:text-6xl font-Ovo">
-          About me
+          {t.title}
         </h2>
       </motion.div>
 
@@ -122,13 +170,7 @@ const About = () => {
               }
             `}
           >
-            An Information Technology graduate from{" "}
-            <b>Telkom University</b> with a passion for web and mobile
-            application development. Experienced in building end-to-end
-            web applications, from responsive and user-friendly interfaces
-            to backend development and API integration. Strong team
-            collaboration skills and an enthusiasm for learning new
-            technologies to improve application quality.
+            {t.description}
           </motion.p>
 
           {/* =========================
@@ -174,7 +216,7 @@ const About = () => {
               />
 
               <h3 className="font-semibold text-lg mb-2">
-                Languages
+                {t.languagesTitle}
               </h3>
 
               <p
@@ -188,8 +230,9 @@ const About = () => {
                   }
                 `}
               >
-                JavaScript, Python, C++, Java, Go, Dart, Html,
-                CSS, React, Tailwind CSS, Node.js, Laravel, PHP
+                React, Next.js, Node.js, Laravel,
+                REST API, MySQL, PostgreSQL,
+                TypeScript, Tailwind CSS, JavaScript, Python, Dart
               </p>
             </motion.div>
 
@@ -231,7 +274,7 @@ const About = () => {
               />
 
               <h3 className="font-semibold text-lg mb-2">
-                Education
+                {t.educationTitle}
               </h3>
 
               <p
@@ -245,8 +288,7 @@ const About = () => {
                   }
                 `}
               >
-                Bachelor Degree in Information Technology -
-                Telkom University
+                {t.educationDesc}
               </p>
             </motion.div>
 
@@ -288,7 +330,7 @@ const About = () => {
               />
 
               <h3 className="font-semibold text-lg mb-2">
-                Projects
+                {t.projectsTitle}
               </h3>
 
               <p
@@ -302,7 +344,7 @@ const About = () => {
                   }
                 `}
               >
-                Developed multiple responsive web and mobile applications using modern technologies.
+                {t.projectsDesc}
               </p>
             </motion.div>
 
@@ -330,7 +372,7 @@ const About = () => {
                 }
               `}
             >
-              Tools i use
+              {t.tools}
             </h4>
 
             <div className="flex flex-wrap gap-4">

@@ -10,16 +10,45 @@ import logoDark from "../assets/logoDark.png";
 import {
   FaMoon,
   FaSun,
-  FaArrowRight,
   FaBars,
   FaTimes,
+  FaGlobe,
 } from "react-icons/fa";
+import Experience from "./Services";
 
-const Navbar = () => {
+interface NavbarProps {
+  language: "id" | "en";
+  setLanguage: React.Dispatch<
+    React.SetStateAction<"id" | "en">
+  >;
+}
+
+const Navbar = ({
+  language,
+  setLanguage,
+}: NavbarProps) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { theme, setTheme } = useTheme();
+
+  const t = {
+  id: {
+    home: "Beranda",
+    about: "Tentang",
+    experience: "Pengalaman",
+    projects: "Proyek",
+    contact: "Kontak",
+  },
+
+  en: {
+    home: "Home",
+    about: "About Me",
+    experience: "Experience",
+    projects: "Projects",
+    contact: "Contact",
+  },
+}[language];
 
   return (
 
@@ -101,7 +130,7 @@ const Navbar = () => {
               }
             `}
           >
-            Home
+            {t.home}
           </a>
         </li>
 
@@ -119,7 +148,7 @@ const Navbar = () => {
               }
             `}
           >
-            About Me
+            {t.about}
           </a>
         </li>
 
@@ -137,7 +166,7 @@ const Navbar = () => {
               }
             `}
           >
-            Skills
+            {t.experience}
           </a>
         </li>
 
@@ -155,7 +184,7 @@ const Navbar = () => {
               }
             `}
           >
-            My Projects
+            {t.projects}
           </a>
         </li>
 
@@ -173,7 +202,7 @@ const Navbar = () => {
               }
             `}
           >
-            Contact Me
+            {t.contact}
           </a>
         </li>
 
@@ -213,30 +242,39 @@ const Navbar = () => {
           }
         </button>
 
-        {/* Contact Button */}
-        <a
-          href="#contact"
-          className={`
-            flex items-center gap-2
+        {/* Language Button */}
+<button
+  onClick={() =>
+    setLanguage(
+      language === "id"
+        ? "en"
+        : "id"
+    )
+  }
+  className={`
+    flex items-center gap-2
 
-            px-5 py-3
+    px-5 py-3
 
-            rounded-full
+    rounded-full
 
-            border
+    border
 
-            transition-colors duration-200
+    transition-colors duration-200
 
-            ${
-              theme === "dark"
-                ? "bg-black text-white border-gray-700 hover:bg-white hover:text-black"
-                : "bg-white text-black border-gray-300 hover:bg-black hover:text-white"
-            }
-          `}
-        >
-          Contact
-          <FaArrowRight className="text-sm" />
-        </a>
+    ${
+      theme === "dark"
+        ? "bg-black text-white border-gray-700 hover:bg-white hover:text-black"
+        : "bg-white text-black border-gray-300 hover:bg-black hover:text-white"
+    }
+  `}
+>
+  <FaGlobe className="text-sm" />
+
+  {language === "id"
+    ? "Indonesia"
+    : "English"}
+</button>
 
       </div>
 
@@ -278,6 +316,38 @@ const Navbar = () => {
               : <FaMoon />
           }
         </button>
+
+        {/* Language Switch */}
+<button
+  onClick={() =>
+    setLanguage(
+      language === "id"
+        ? "en"
+        : "id"
+    )
+  }
+  className={`
+    px-3 py-2
+
+    rounded-full
+
+    border
+
+    text-xs font-medium
+
+    transition-all duration-300
+
+    ${
+      theme === "dark"
+        ? "bg-black text-white border-gray-700"
+        : "bg-white text-black border-gray-300"
+    }
+  `}
+>
+  {language === "id"
+    ? "ID"
+    : "EN"}
+</button>
 
         {/* Hamburger */}
         <button
@@ -370,7 +440,7 @@ const Navbar = () => {
               }
             `}
           >
-            Home
+            {t.home}
           </a>
 
           <a
@@ -386,7 +456,7 @@ const Navbar = () => {
               }
             `}
           >
-            About Me
+            {t.about}
           </a>
 
           <a
@@ -402,7 +472,7 @@ const Navbar = () => {
               }
             `}
           >
-            Services
+            {t.experience}
           </a>
 
           <a
@@ -418,7 +488,7 @@ const Navbar = () => {
               }
             `}
           >
-            My Projects
+            {t.projects}
           </a>
 
           <a
@@ -434,7 +504,7 @@ const Navbar = () => {
               }
             `}
           >
-            Contact Me
+            {t.contact}
           </a>
 
         </div>

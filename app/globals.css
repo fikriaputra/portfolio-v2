@@ -3,3 +3,7 @@
 *{
   font-family: Outfit, Ovo;
 }
+
+html {
+  scroll-behavior: smooth;
+}

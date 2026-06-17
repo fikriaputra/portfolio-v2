@@ -13,9 +13,45 @@ import { motion } from "framer-motion";
 
 import profileImg from "../assets/Foto_Formal_no_pocket.png";
 
-const Header = () => {
+interface HeaderProps {
+  language: "id" | "en";
+}
+
+const Header = ({ language }: HeaderProps) => {
 
   const { theme } = useTheme();
+
+  const content = {
+    id: {
+      greeting: "Halo! Saya Fikri Adyatma Putra",
+      title: (
+        <>
+          Full Stack Developer & <br />
+          IT Support
+        </>
+      ),
+      description:
+        "Lulusan Teknologi Informasi dengan pengalaman dalam mengembangkan aplikasi web modern dan mendukung infrastruktur TI. Terampil dalam React, Next.js, Node.js, Laravel, jaringan, dan pemecahan masalah sistem melalui proyek akademik dan magang profesional.",
+      contact: "Hubungi Saya",
+      download: "Unduh CV",
+    },
+
+    en: {
+      greeting: "Hi! I'm Fikri Adyatma Putra",
+      title: (
+        <>
+          Full Stack Developer & <br />
+          IT Support
+        </>
+      ),
+      description:
+        "Information Technology graduate with experience in developing modern web applications and supporting IT infrastructure. Skilled in React, Next.js, Node.js, Laravel, networking, and system troubleshooting through academic projects and professional internships.",
+      contact: "Contact Me",
+      download: "Download CV",
+    },
+  };
+
+  const t = content[language];
 
   return (
     <section
@@ -77,7 +113,7 @@ const Header = () => {
           }
         `}
       >
-        Hi! I'm Fikri Adyatma Putra
+        {t.greeting}
         <span className="text-2xl">👋</span>
       </motion.h3>
 
@@ -103,8 +139,7 @@ const Header = () => {
           }
         `}
       >
-        Web Developer & <br />
-        IT Enthusiast
+        {t.title}
       </motion.h1>
 
       {/* =========================
@@ -129,8 +164,7 @@ const Header = () => {
           }
         `}
       >
-        Passionate web developer focused on building modern, 
-        responsive, and user-friendly web applications with clean UI/UX experiences.
+        {t.description}
       </motion.p>
 
       {/* =========================
@@ -169,13 +203,13 @@ const Header = () => {
             }
           `}
         >
-          Contact Me
+          {t.contact}
           <FaArrowRight />
         </a>
 
         {/* Download CV */}
         <a
-          href="/Fikri Adyatma Putra_Resume.pdf"
+          href="/CV_Fikri Adyatma Putra.pdf"
           download
           className={`
             flex items-center gap-2
@@ -195,7 +229,7 @@ const Header = () => {
             }
           `}
         >
-          Download CV
+          {t.download}
           <FaDownload />
         </a>
 

@@ -21,9 +21,66 @@ import logoDark from "../assets/logoDark.png";
 
 import { sendEmail } from "../utils/emailjs";
 
-const Contact = () => {
+interface ContactProps {
+  language: "id" | "en";
+}
+
+const Contact = ({ language }: ContactProps) => {
 
   const { theme } = useTheme();
+
+  const content = {
+  id: {
+    heading: "Hubungi Saya",
+
+    title: "Mari Terhubung",
+
+    description:
+      "Jangan ragu untuk menghubungi saya untuk kolaborasi, proyek, maupun peluang membangun pengalaman digital yang modern.",
+
+    namePlaceholder: "Masukkan nama Anda",
+
+    emailPlaceholder: "Masukkan email Anda",
+
+    messagePlaceholder: "Tulis pesan Anda",
+
+    submit: "Kirim Pesan",
+
+    successMessage:
+      "Pesan berhasil dikirim!",
+
+    errorMessage:
+      "Gagal mengirim pesan.",
+  },
+
+  en: {
+    heading: "Connect With Me",
+
+    title: "Get In Touch",
+
+    description:
+      "Feel free to reach out for collaborations, projects, or opportunities to build modern digital experiences.",
+
+    namePlaceholder: "Enter your name",
+
+    emailPlaceholder: "Enter your email",
+
+    messagePlaceholder: "Enter your message",
+
+    submit: "Submit Now",
+
+    successMessage:
+      "Message sent successfully!",
+
+    errorMessage:
+      "Failed to send message.",
+
+    copyright:
+      "All rights reserved.",
+  },
+};
+
+const t = content[language];
 
   const form = useRef<HTMLFormElement>(null);
 
@@ -39,7 +96,7 @@ const Contact = () => {
 
       await sendEmail(form.current);
 
-      toast.success("Message sent successfully!");
+      toast.success(t.successMessage);
 
       form.current.reset();
 
@@ -47,7 +104,7 @@ const Contact = () => {
 
       console.log(error);
 
-      toast.error("Failed to send message.");
+      toast.error(t.errorMessage);
 
     }
 
@@ -96,11 +153,11 @@ const Contact = () => {
             }
           `}
         >
-          Connect with me
+          {t.heading}
         </h4>
 
         <h2 className="text-3xl sm:text-5xl md:text-6xl font-Ovo mb-6">
-          Get in touch
+          {t.title}
         </h2>
 
         <p
@@ -117,8 +174,7 @@ const Contact = () => {
             }
           `}
         >
-          Feel free to reach out for collaborations, 
-          projects, or opportunities to build modern digital experiences.
+          {t.description}
         </p>
 
       </motion.div>
@@ -147,7 +203,7 @@ const Contact = () => {
           <input
             type="text"
             name="user_name"
-            placeholder="Enter your name"
+            placeholder={t.namePlaceholder}
             required
             className={`
               w-full
@@ -186,7 +242,7 @@ const Contact = () => {
           <input
             type="email"
             name="user_email"
-            placeholder="Enter your email"
+            placeholder={t.emailPlaceholder}
             required
             className={`
               w-full
@@ -228,7 +284,7 @@ const Contact = () => {
         <textarea
           rows={7}
           name="message"
-          placeholder="Enter your message"
+          placeholder={t.messagePlaceholder}
           required
           className={`
             w-full
@@ -306,7 +362,7 @@ const Contact = () => {
               }
             `}
           >
-            Submit now
+            {t.submit}
             <FaArrowRight />
           </button>
 

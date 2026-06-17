@@ -9,15 +9,63 @@ import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 import project1 from "../assets/FishPond.png";
-import project2 from "../assets/Web_SmartComp.png";
-import project3 from "../assets/Mobile_SmartComp.png";
-import project4 from "../assets/sanditel.png";
-import project5 from "../assets/Mobile_JKN.png";
-import project6 from "../assets/logoDark.png";
+import project2 from "../assets/Bunda.png";
+import project3 from "../assets/Reelique.png";
+import project4 from "../assets/Web_SmartComp.png";
+import project5 from "../assets/Mobile_SmartComp.png";
+import project6 from "../assets/sanditel.png";
 
-const Work = () => {
+interface WorkProps {
+  language: "id" | "en";
+}
+
+const Work = ({ language }: WorkProps) => {
 
   const { theme } = useTheme();
+
+  const content = {
+  id: {
+    heading: "Portofolio Saya",
+    title: "Proyek Terbaru Saya",
+
+    description:
+      "Menampilkan berbagai proyek pengembangan web, machine learning, dan solusi digital yang dibangun menggunakan teknologi modern dengan fokus pada performa, skalabilitas, dan pengalaman pengguna yang optimal.",
+
+    certificate: "Sertifikat",
+
+    showMore: "Lihat Selengkapnya",
+    showLess: "Tampilkan Lebih Sedikit",
+
+    categories: {
+      machineLearning: "Machine Learning",
+      webApplication: "Aplikasi Web",
+      mobileApp: "Aplikasi Mobile",
+      uiux: "Desain UI/UX",
+    },
+  },
+
+  en: {
+    heading: "My Portfolio",
+    title: "My Latest Projects",
+
+    description:
+      "Featuring a variety of web development projects, machine learning, and digital solutions built using modern technologies with a focus on optimal performance, scalability, and user experience.",
+
+    certificate: "Certificate",
+
+    showMore: "Show More",
+    showLess: "Show Less",
+
+    categories: {
+      machineLearning: "Machine Learning",
+      webApplication: "Web Application",
+      mobileApp: "Mobile App",
+      uiux: "UI/UX Design",
+    },
+  },
+};
+
+const t = content[language];
 
   const [showAll, setShowAll] = useState(false);
 
@@ -25,9 +73,12 @@ const Work = () => {
     {
       image: project1,
       title: "Fish Prediction ML Models",
-      category: "Machine Learning",
+      category:
+  language === "id"
+    ? t.categories.machineLearning
+    : t.categories.machineLearning,
       github:
-        "https://github.com/fikriaputra/Fish-Prediction-ML-Models",
+        "https://ieeexplore.ieee.org/document/11362636",
 
       certificate:
         "https://drive.google.com/file/d/1FzbxIdr2nuHS9qxRW6CYANlByWVXc3D2/view?usp=sharing",
@@ -41,8 +92,38 @@ const Work = () => {
 
     {
       image: project2,
+      title: "Bunda Car Wash",
+      category: t.categories.webApplication,
+      github: "https://bunda-car-wash.vercel.app/",
+
+      tech: [
+        "React.js",
+        "Vite",
+        "Tailwind CSS",
+        "Responsive Web Design"
+      ],
+    },
+
+    {
+      image: project3,
+      title: "ReeLique Movie Discovery Platform",
+      category: t.categories.webApplication,
+      github: "https://reelique.vercel.app/",
+
+      tech: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "TMDB API",
+        "Playwright",
+      ],
+    },
+
+    {
+      image: project4,
       title: "Website Smart Competition",
-      category: "Web Application",
+      category: t.categories.webApplication,
       github: "https://github.com/fikriaputra/Web-SmartComp",
 
       tech: [
@@ -55,9 +136,9 @@ const Work = () => {
     },
 
     {
-      image: project3,
+      image: project5,
       title: "Smart Competition App",
-      category: "Mobile App",
+      category: t.categories.mobileApp,
       github: "https://github.com/fikriaputra/Smart-Comp-Mobile",
 
       tech: [
@@ -69,9 +150,9 @@ const Work = () => {
     },
 
     {
-      image: project4,
+      image: project6,
       title: "Sanditel Apps",
-      category: "Web Application",
+      category: t.categories.webApplication,
       github: "https://fe-sanditel-hz9r.vercel.app/",
 
       tech: [
@@ -81,22 +162,6 @@ const Work = () => {
         "JavaScript",
         "REST API",
         "Responsive Design",
-      ],
-    },
-
-    {
-      image: project5,
-      title: "Mobile JKN Redesign",
-      category: "UI/UX Design",
-      github: "https://www.figma.com/design/PgDdwIwW48hltkHvBjrtq1/UX-MENYALA?node-id=0-1&t=pq63uVId6Wf8nFih-1",
-
-      tech: [
-        "Figma",
-        "UI Design",
-        "UX Research",
-        "Wireframing",
-        "Prototyping",
-        "Design System",
       ],
     },
 
@@ -149,11 +214,11 @@ const Work = () => {
             }
           `}
         >
-          My portfolio
+          {t.heading}
         </h4>
 
         <h2 className="text-3xl sm:text-4xl md:text-6xl font-Ovo mb-6">
-          My latest projects
+          {t.title}
         </h2>
 
         <p
@@ -170,8 +235,7 @@ const Work = () => {
             }
           `}
         >
-          Explore my collection of modern web projects focused on responsive design, 
-          clean UI/UX, and user-friendly experiences.
+          {t.description}
         </p>
 
       </motion.div>
@@ -370,7 +434,7 @@ const Work = () => {
         transition-all duration-300
       "
     >
-      Certificate
+      {t.certificate}
     </a>
   )}
 
@@ -447,7 +511,9 @@ const Work = () => {
               }
             `}
           >
-            {showAll ? "Show less" : "Show more"}
+            {showAll
+  ? t.showLess
+  : t.showMore}
           </button>
 
         </motion.div>
